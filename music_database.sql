@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS albums (
 CREATE TABLE IF NOT EXISTS tracks (
     track_id SERIAL PRIMARY KEY,
     track_name VARCHAR(50) NOT NULL,
-    duration VARCHAR(5),
+    duration TIME,
     album_id INTEGER NOT NULL REFERENCES albums(album_id)
 );
 
@@ -45,8 +45,10 @@ CREATE TABLE IF NOT EXISTS collection_tracks (
     CONSTRAINT pk_collection_tracks PRIMARY KEY (collection_id, track_id)
 );
 
+
 - - задание 1
 - - добавление данных в таблицы
+
 
 INSERT INTO artists (artist_name)
 VALUES
@@ -55,7 +57,8 @@ VALUES
     ('Limp Bizkit'),
     ('Beastie Boys'),
     ('Linkin Park'),
-    ('Sum 41');
+    ('Sum 41'),
+    ('Madonna');
 
 INSERT INTO genres (genre_name)
 VALUES
@@ -63,7 +66,9 @@ VALUES
     ('Industrial metal'),
     ('Nu metal'),
     ('Rap rock'),
-    ('Pop punk');
+    ('Pop punk'),
+    ('Pop'),
+    ('Disco');
 
 INSERT INTO albums (title, album_year)
 VALUES 
@@ -72,105 +77,79 @@ VALUES
     ('Three Dollar Bill, Y’all$', 1997),
     ('Licensed to Ill', 1986),
     ('Hybrid Theory', 2000),
-    ('Half Hour of Power', 2000);
+    ('Half Hour of Power', 2000),
+    ('Madame X', 2019);
     
 INSERT INTO tracks (track_name, duration, album_id)
 VALUES
-    ('Going to Pasalacqua', '3:38', 20),
-    ('Green Day', '2:55', 20),
-    ('Disappearing Boy', '3:16', 20),
-    ('Cake and Sodomy', '3:40', 21),
-    ('Lunchbox', '4:35', 21),
-    ('Get Your Gunn', '3:18', 21),
-    ('Counterfeit', '2:46', 22),
-    ('Nobody Loves Me', '3:52', 22),
-    ('Sour', '3:07', 22),
-    ('(You Gotta) Fight for Your Right (To Party!)', '3:09', 23),
-    ('No Sleep till Brooklyn', '4:10', 23),
-    ('Hold It Now, Hit It', '3:29', 23),
-    ('In the End', '3:36', 24),
-    ('Crawling', '3:39', 24),
-    ('One Step Closer', '2:35', 24),
-    ('Makes No Difference', '3:32', 25),
-    ('What I Believe', '2:20', 25),
-    ('Machine Gun', '1:49', 25);
-
+    ('Going to Pasalacqua', '00:03:38', 1),
+    ('Green Day', '00:02:55', 1),
+    ('Disappearing Boy', '00:03:16', 1),
+    ('Cake and Sodomy', '00:03:40', 2),
+    ('Lunchbox', '00:04:35', 2),
+    ('Get Your Gunn', '00:03:18', 2),
+    ('My Monkey', '00:04:31', 2),
+    ('Counterfeit', '00:02:46', 3),
+    ('Nobody Loves Me', '00:03:52', 3),
+    ('Sour', '00:03:07', 3),
+    ('(You Gotta) Fight for Your Right (To Party!)', '00:03:09', 4),
+    ('No Sleep till Brooklyn', '00:04:10', 4),
+    ('Hold It Now, Hit It', '00:03:29', 4),
+    ('In the End', '00:03:36', 5),
+    ('Crawling', '00:03:39', 5),
+    ('One Step Closer', '00:02:35', 5),
+    ('Makes No Difference', '00:03:32', 6),
+    ('What I Believe', '00:02:20', 6),
+    ('Machine Gun', '00:01:49', 6),
+    ('Medellín', '00:04:58', 7),
+    ('Crave', '00:03:21', 7),
+    ('I Rise', '00:03:44', 7);
+    
 INSERT INTO collections (collection_name, collection_year)
 VALUES
     ('Quarantine Mob Rocknmob', 2020),
     ('Sing the Hits of Sum 41 (Karaoke Version)', 2014),
     ('Def Jam Classics, Vol. 1', 1989),
-    ('MTV Spring Break: Live Performances 1998', 1998);
-    
-INSERT INTO artist_albums
-VALUES
-    ('1', '20'),
-    ('2', '21'),
-    ('3', '22'),
-    ('4', '23'),
-    ('5', '24'),
-    ('6', '25');
-
-INSERT INTO artist_genres
-VALUES
-    ('1', '1'),
-    ('1', '5'),
-    ('2', '2'),
-    ('3', '3'),
-    ('3', '4'),
-    ('4', '4'),
-    ('5', '3'),
-    ('6', '1'),
-    ('6', '5');
-
-INSERT INTO collection_tracks 
-VALUES
-    ('1', '13'),
-    ('2', '17'),
-    ('3', '11'),
-    ('4', '8');
-
-- - дополнительная информация 
-
-INSERT INTO artists (artist_name)
-VALUES ('Madonna');
-
-INSERT INTO genres (genre_name)
-VALUES
-    ('Pop'),
-    ('Disco');
-
-INSERT INTO albums (title, album_year)
-VALUES 
-    ('Madame X', 2019);
-
-INSERT INTO tracks (track_name, duration, album_id)
-VALUES
-    ('My Monkey', '4:31', 21),
-    ('Medellín', '4:58', 26),
-    ('Crave', '3:21', 26),
-    ('I Rise', '3:44', 26);
-
-INSERT INTO collections (collection_name, collection_year)
-VALUES
+    ('MTV Spring Break: Live Performances 1998', 1998),
     ('Crave (Remixes)', 2019),
     ('The Best World Ballads 37 Part 1', 2019);
 
 INSERT INTO artist_albums
 VALUES
-    ('7', '26');
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7);
 
 INSERT INTO artist_genres
 VALUES
-    ('7', '6'),
-    ('7', '7');
+    (1, 1),
+    (1, 5),
+    (2, 2),
+    (3, 3),
+    (3, 4),
+    (4, 4),
+    (5, 3),
+    (6, 1),
+    (6, 5),
+    (7, 6),
+    (7, 7);
 
 INSERT INTO collection_tracks 
 VALUES
-    ('5', '26'),
-    ('6', '27');
+    (1, 14),
+    (2, 18),
+    (3, 12),
+    (4, 9),
+    (5, 21),
+    (6, 22);
+
 
 - - задание 2
+
 
 SELECT track_name, duration
 FROM tracks
@@ -178,7 +157,7 @@ WHERE duration = (SELECT MAX(duration) FROM tracks);
 
 SELECT track_name, duration
 FROM tracks 
-WHERE duration > '3:30'
+WHERE duration >= '00:03:30'
 
 SELECT collection_name, collection_year
 FROM collections
@@ -190,13 +169,24 @@ WHERE artist_name NOT LIKE '% %';
 
 SELECT track_name
 FROM tracks
-WHERE LOWER(track_name) LIKE LOWER('%my%') OR LOWER(track_name) LIKE LOWER('%мой%');
+WHERE 
+    track_name ILIKE 'my %'
+    OR track_name ILIKE '% my'
+    OR track_name ILIKE '% my %'
+    OR track_name ILIKE 'my'
+    OR track_name ILIKE 'мой %'
+    OR track_name ILIKE '% мой'
+    OR track_name ILIKE '% мой %'
+    OR track_name ILIKE 'мой';
 
 - - задание 3
 
-SELECT g.genre_name, (SELECT COUNT(*) FROM artist_genres ag WHERE ag.genre_id = g.genre_id) AS total_artists
-FROM genres g
-ORDER BY total_artists DESC
+SELECT genres.genre_name, COUNT(artist_genres.artist_id) AS total_artists
+FROM genres
+LEFT JOIN artist_genres
+    ON genres.genre_id = artist_genres.genre_id
+GROUP BY genres.genre_id, genres.genre_name
+ORDER BY total_artists DESC;
 
 SELECT COUNT(*) AS track_count
 FROM tracks
@@ -205,27 +195,11 @@ WHERE albums.album_year BETWEEN 2019 AND 2020;
 
 SELECT 
     albums.album_id,
-    albums.title, 
-    CONCAT(
-    FLOOR(AVG(
-      SPLIT_PART(tracks.duration, ':', 1)::INTEGER * 60 +
-      SPLIT_PART(tracks.duration, ':', 2)::INTEGER
-    ) / 60),
-    ':',
-    LPAD(
-      ROUND(
-        AVG(
-          SPLIT_PART(tracks.duration, ':', 1)::INTEGER * 60 +
-          SPLIT_PART(tracks.duration, ':', 2)::INTEGER
-        ) % 60
-      )::TEXT,
-      2,
-      '0'
-    )
-  ) AS avg_track_duration
+    albums.title,
+    AVG(tracks.duration) AS avg_track_duration
 FROM tracks
 JOIN albums ON tracks.album_id = albums.album_id
-GROUP BY albums.album_id, albums.title
+GROUP BY albums.album_id, albums.title;
 
 SELECT artist_name 
 FROM artists
